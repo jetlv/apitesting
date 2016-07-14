@@ -1,0 +1,16 @@
+{
+  "name": "apitesting",
+  "version": "1.0.0",
+  "description": "Api automation framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mocha": "^2.5.3",
+    "should": "^9.0.2",
+    "supertest": "^1.2.0"
+  }
+}
