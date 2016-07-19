@@ -13,7 +13,7 @@ var tester = supertest.agent('http://app.milanoo.com');
 describe('楼层', function () {
     it('获取首页楼层', function (done) {
         var expected = {
-            "msg": "操成功",
+            "msg": "操作成功",
             "code": "0",
             "list": [{
                 "is_active": 1,
