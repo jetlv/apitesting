@@ -5,16 +5,9 @@ var supertest = require('supertest');
 var should = require("should");
 var conf = require('../../../configuration.js');
 var CONST = conf.CONST;
+var util = require('../../../toolkits.js');
+var __path = util.getPath;
 
-/**
- * get current api path
- */
-function __path() {
-    var sep = CONST['SEP_' + os.platform()];
-    var fArray = __filename.split(sep);
-    var path = '/' + fArray[fArray.length - 3] + '/' + fArray[fArray.length - 2] + '/' + fArray[fArray.length - 1].replace('js', 'htm') + '?';
-    return path;
-}
 
 var tester = supertest.agent('http://app.milanoo.com');
 
@@ -277,11 +270,11 @@ describe('迷你购物车', function () {
             },
             productNum: 1
         };
-        tester.get(__path() + 'cookieId=nocookie&memberId=3661645&priceUnit=USD&countryId=&countryCode=&languageCode=en-uk&promotionKey=SEM_1_en_gg_kw_c0_US_Milanoonewyear_160104&deviceType=5&autoAddGiftFlag=1&websiteId=1&websiteIdLastView=1')
+        tester.get(__path(__filename) + 'cookieId=nocookie&memberId=3661645&priceUnit=USD&countryId=&countryCode=&languageCode=en-uk&promotionKey=SEM_1_en_gg_kw_c0_US_Milanoonewyear_160104&deviceType=5&autoAddGiftFlag=1&websiteId=1&websiteIdLastView=1')
             .expect(200)
             .end(function (err, res) {
                 res.should.be.json;
-                JSON.stringify(res.body).should.equal(JSON.stringify(expected));
+                res.body.should.eql(expected);
                 done();
             });
     });

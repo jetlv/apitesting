@@ -5,17 +5,8 @@ var supertest = require('supertest');
 var should = require("should");
 var conf = require('../../../configuration.js');
 var CONST = conf.CONST;
-
-/**
- * get current api path
- */
-function __path() {
-    var sep = CONST['SEP_' + os.platform()];
-    var fArray = __filename.split(sep);
-    var path = '/' + fArray[fArray.length - 3] + '/' + fArray[fArray.length - 2] + '/' + fArray[fArray.length - 1].replace('js', 'htm') + '?';
-    return path;
-}
-
+var util = require('../../../toolkits.js');
+var __path = util.getPath;
 var tester = supertest.agent('http://app.milanoo.com');
 
 describe('闪购接口', function () {
@@ -514,11 +505,11 @@ describe('闪购接口', function () {
             "activationTime": 1467956702,
             "featureId": 106
         };
-        tester.get(__path() + 'categoryNum=6&productNum=4&languageCode=en-uk&featureName=skin_60&websiteIdLastView=1')
+        tester.get(__path(__filename) + 'categoryNum=6&productNum=4&languageCode=en-uk&featureName=skin_60&websiteIdLastView=1')
             .expect(200)
             .end(function (err, res) {
                 res.should.be.json;
-                JSON.stringify(res.body).should.equal(JSON.stringify(expected));
+                res.body.should.eql(expected);
                 done();
             });
     });

@@ -5,23 +5,14 @@ var supertest = require('supertest');
 var should = require("should");
 var conf = require('../../../configuration.js');
 var CONST = conf.CONST;
-
-/**
- * get current api path
- */
-function __path() {
-    var sep = CONST['SEP_' + os.platform()];
-    var fArray = __filename.split(sep);
-    var path = '/' + fArray[fArray.length - 3] + '/' + 　fArray[fArray.length - 2] + '/' + fArray[fArray.length - 1].replace('js', 'htm') + '?';
-    return path;
-}
-
+var util = require('../../../toolkits.js');
+var __path = util.getPath;
 var tester = supertest.agent('http://app.milanoo.com');
 
 describe("获取用户信息", function () {
     it("常规验证", function (done) {
         tester
-            .get(__path() + 'websiteIdLastView=1&id=3662865&websiteId=1&deviceType=5&websiteIdLastView=1')
+            .get(__path(__filename) + 'websiteIdLastView=1&id=3662865&websiteId=1&deviceType=5&websiteIdLastView=1')
             .expect(200)
             .end(function (err, res) {
                 res.status.should.equal(200);

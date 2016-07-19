@@ -5,16 +5,9 @@ var supertest = require('supertest');
 var should = require("should");
 var conf = require('../../../configuration.js');
 var CONST = conf.CONST;
+var util = require('../../../toolkits.js');
+var __path = util.getPath;
 
-/**
- * get current api path
- */
-function __path() {
-    var sep = CONST['SEP_' + os.platform()];
-    var fArray = __filename.split(sep);
-    var path = '/' + fArray[fArray.length - 3] + '/' + fArray[fArray.length - 2] + '/' + fArray[fArray.length - 1].replace('js', 'htm') + '?';
-    return path;
-}
 
 var tester = supertest.agent('http://app.milanoo.com');
 
@@ -40,7 +33,6 @@ describe('购物车信息', function () {
                         "superpositionNum": 0,
                         "firstPictureUrl": "tb2012/tb201204/tb20120426/BATCHXLS_c5d082b3-4179-4369-ab5e-1ff5862c000f_003.jpg",
                         "giftPrice": 1,
-                        "maxStock": 2,
                         "oldlimitNum": 1,
                         "productPrice": 1.9,
                         "status": 1
@@ -56,7 +48,6 @@ describe('购物车信息', function () {
                             "superpositionNum": 0,
                             "firstPictureUrl": "20110617/Handsome-Blue-Bamboo-Cotton-Bamboo-Fiber-Denim-Mens-Short-Jeans-81633-1.jpg",
                             "giftPrice": 1,
-                            "maxStock": 1,
                             "oldlimitNum": 1,
                             "productPrice": 20.99,
                             "status": 1
@@ -72,7 +63,6 @@ describe('购物车信息', function () {
                             "superpositionNum": 0,
                             "firstPictureUrl": "201206/20120620/Comfortable-White-Printing-Round-Neck-Short-Sleeves-100-Cotton-Mens-T-Shirt-78538-5.jpg",
                             "giftPrice": 1,
-                            "maxStock": 23,
                             "oldlimitNum": 1,
                             "productPrice": 7.99,
                             "status": 1
@@ -88,7 +78,6 @@ describe('购物车信息', function () {
                             "superpositionNum": 0,
                             "firstPictureUrl": "201310/20131011/Casual-Blue-And-Red-100-Cotton-Mens-Long-Sleeves-Shirt-73491-682182.jpg",
                             "giftPrice": 1,
-                            "maxStock": 40,
                             "oldlimitNum": 1,
                             "productPrice": 6,
                             "status": 1
@@ -126,7 +115,6 @@ describe('购物车信息', function () {
                             "superpositionNum": 0,
                             "firstPictureUrl": "201309/20130930/Unique-Fashion-White-One-Piece-Halter-Womens-Swimsuit-69471-5.jpg",
                             "giftPrice": 0,
-                            "maxStock": 15,
                             "oldlimitNum": 1,
                             "productPrice": 2,
                             "status": 1
@@ -142,7 +130,6 @@ describe('购物车信息', function () {
                                 "superpositionNum": 0,
                                 "firstPictureUrl": "201103/White-Classic-Casual-Round-Neck-Womens-T-shirt-59717-1.jpg",
                                 "giftPrice": 0,
-                                "maxStock": 7,
                                 "oldlimitNum": 1,
                                 "productPrice": 2,
                                 "status": 1
@@ -158,7 +145,6 @@ describe('购物车信息', function () {
                                 "superpositionNum": 0,
                                 "firstPictureUrl": "2011/201107/2011-07-11-15_21_52_221_577.jpg",
                                 "giftPrice": 0,
-                                "maxStock": 32,
                                 "oldlimitNum": 1,
                                 "productPrice": 2,
                                 "status": 1
@@ -174,7 +160,6 @@ describe('购物车信息', function () {
                                 "superpositionNum": 0,
                                 "firstPictureUrl": "2011/201107/2011-07-06-17_00_35_793_586.JPG",
                                 "giftPrice": 0,
-                                "maxStock": 18,
                                 "oldlimitNum": 1,
                                 "productPrice": 4,
                                 "status": 1
@@ -190,7 +175,6 @@ describe('购物车信息', function () {
                                 "superpositionNum": 0,
                                 "firstPictureUrl": "2011/201107/2011-07-07-09_22_23_674_442.jpg",
                                 "giftPrice": 0,
-                                "maxStock": 54,
                                 "oldlimitNum": 1,
                                 "productPrice": 4,
                                 "status": 1
@@ -477,11 +461,11 @@ describe('购物车信息', function () {
             },
             "autoAddGiftFlag": 1
         };
-        tester.get(__path() + 'websiteIdLastView=1&countryId=&cookieId=nocookie&promotionKey=SEM_1_en_gg_kw_c0_US_Milanoonewyear_160104&memberId=3666009&countryCode=US&expressType=&priceUnit=USD&languageCode=en-uk&websiteId=1&autoAddGiftFlag=1&deviceType=5')
+        tester.get(__path(__filename) + 'websiteIdLastView=1&countryId=&cookieId=nocookie&promotionKey=SEM_1_en_gg_kw_c0_US_Milanoonewyear_160104&memberId=3666009&countryCode=US&expressType=&priceUnit=USD&languageCode=en-uk&websiteId=1&autoAddGiftFlag=1&deviceType=5')
             .expect(200)
             .end(function (err, res) {
                 res.should.be.json;
-                res.body.should.eql(expected);
+                res.body.should.containDeep(expected);
                 done();
             });
     });
