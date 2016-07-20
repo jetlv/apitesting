@@ -19,7 +19,7 @@ var expect = chai.expect;
 var tester = supertest.agent('http://app.milanoo.com');
 
 describe('购物车信息 - ' + __path(__filename), function () {
-    it('获取购物车信息' , function (done) {
+    it('获取购物车信息 - http://app.milanoo.com' + __path(__filename) + 'websiteIdLastView=1&countryId=&cookieId=nocookie&promotionKey=SEM_1_en_gg_kw_c0_US_Milanoonewyear_160104&memberId=3666009&countryCode=US&expressType=&priceUnit=USD&languageCode=en-uk&websiteId=1&autoAddGiftFlag=1&deviceType=5' , function (done) {
         var expected = {
             "msg": "操作成功",
             "code": "0",
@@ -468,7 +468,7 @@ describe('购物车信息 - ' + __path(__filename), function () {
             },
             "autoAddGiftFlag": 1
         };
-        console.log('http://app.milanoo.com' + __path(__filename) + 'websiteIdLastView=1&countryId=&cookieId=nocookie&promotionKey=SEM_1_en_gg_kw_c0_US_Milanoonewyear_160104&memberId=3666009&countryCode=US&expressType=&priceUnit=USD&languageCode=en-uk&websiteId=1&autoAddGiftFlag=1&deviceType=5');
+        // console.log('http://app.milanoo.com' + __path(__filename) + 'websiteIdLastView=1&countryId=&cookieId=nocookie&promotionKey=SEM_1_en_gg_kw_c0_US_Milanoonewyear_160104&memberId=3666009&countryCode=US&expressType=&priceUnit=USD&languageCode=en-uk&websiteId=1&autoAddGiftFlag=1&deviceType=5');
         tester.get(__path(__filename) + 'websiteIdLastView=1&countryId=&cookieId=nocookie&promotionKey=SEM_1_en_gg_kw_c0_US_Milanoonewyear_160104&memberId=3666009&countryCode=US&expressType=&priceUnit=USD&languageCode=en-uk&websiteId=1&autoAddGiftFlag=1&deviceType=5')
             .expect(200)
             .end(function (err, res) {
