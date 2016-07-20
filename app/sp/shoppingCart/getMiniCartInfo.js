@@ -15,7 +15,7 @@ var expect = chai.expect;
 
 var tester = supertest.agent('http://app.milanoo.com');
 
-describe('迷你购物车'), function () {
+describe('迷你购物车', function () {
     // console.log('http://app.milanoo.com' + __path(__filename) + 'cookieId=nocookie&memberId=3661645&priceUnit=USD&countryId=&countryCode=&languageCode=en-uk&promotionKey=SEM_1_en_gg_kw_c0_US_Milanoonewyear_160104&deviceType=5&autoAddGiftFlag=1&websiteId=1&websiteIdLastView=1');
     it('普通用户获取迷你购物车信息', function (done) {
         var expected = {
