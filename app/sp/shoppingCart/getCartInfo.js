@@ -18,7 +18,7 @@ var expect = chai.expect;
 
 var tester = supertest.agent('http://app.milanoo.com');
 
-describe('购物车信息'), function () {
+describe('购物车信息', function () {
     it('获取购物车信息' , function (done) {
         var expected = {
             "msg": "操作成功",
