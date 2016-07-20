@@ -8,4 +8,4 @@
 /// <reference path="typings/should/should.d.ts" />
 /// <reference path="typings/superagent/superagent.d.ts" />
 /// <reference path="typings/supertest/supertest.d.ts" />
-
+/// <reference path="typings/chai/chai.d.ts" />

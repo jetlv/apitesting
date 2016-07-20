@@ -7,11 +7,16 @@ var conf = require('../../../configuration.js');
 var CONST = conf.CONST;
 var util = require('../../../toolkits.js');
 var __path = util.getPath;
-
+var deep = require('deep-diff')
+var observableDiff = require('deep-diff').observableDiff;
+var applyChange = require('deep-diff').applyChange;
+var chai = require('chai');
+var expect = chai.expect;
 
 var tester = supertest.agent('http://app.milanoo.com');
 
-describe('迷你购物车', function () {
+describe('迷你购物车 - ' + __path(__filename), function () {
+    console.log('http://app.milanoo.com' + __path(__filename) + 'cookieId=nocookie&memberId=3661645&priceUnit=USD&countryId=&countryCode=&languageCode=en-uk&promotionKey=SEM_1_en_gg_kw_c0_US_Milanoonewyear_160104&deviceType=5&autoAddGiftFlag=1&websiteId=1&websiteIdLastView=1');
     it('普通用户获取迷你购物车信息', function (done) {
         var expected = {
             msg: "操作成功",
@@ -26,7 +31,6 @@ describe('迷你购物车', function () {
                 freightFreePromotion: 1,
                 cartStockDay: 9,
                 websiteId: 1,
-                rate: 6.5761,
                 member: {
                     deviceType: 1,
                     emailsDy: 0,
@@ -50,7 +54,6 @@ describe('迷你购物车', function () {
                         52238009
                     ],
                     superposition: 1,
-                    rate: 6.5761,
                     discount: 0,
                     id: 3221,
                     type: 0,
@@ -64,7 +67,6 @@ describe('迷你购物车', function () {
                 minCartStockDay: 0,
                 weight: 0.2,
                 productNum: 0,
-                rateTo: 6.5761,
                 fastDelivery: 1,
                 freightCountList: [
                     {
@@ -273,8 +275,27 @@ describe('迷你购物车', function () {
         tester.get(__path(__filename) + 'cookieId=nocookie&memberId=3661645&priceUnit=USD&countryId=&countryCode=&languageCode=en-uk&promotionKey=SEM_1_en_gg_kw_c0_US_Milanoonewyear_160104&deviceType=5&autoAddGiftFlag=1&websiteId=1&websiteIdLastView=1')
             .expect(200)
             .end(function (err, res) {
-                res.should.be.json;
-                res.body.should.eql(expected);
+                var member = {
+                    deviceType: 1,
+                    emailsDy: 0,
+                    websiteId: 1,
+                    userTime: 1459995496,
+                    gradeOid: 0,
+                    snsMembersoftDeletes: 1,
+                    changeType: 0,
+                    userPass: "78f010002c77054bfb6dd20ad8a04341",
+                    id: 3661645,
+                    type: "Personal"
+                };
+                expect(res.body.msg).to.eql("操作成功");
+                expect(res.body.code).to.eql("0");
+                //Member信息验证
+                observableDiff(member, res.body.shoppingCart.member, function (d) {
+                    expect(d.kind, JSON.stringify(d).replace(/"/g, '\'')).to.not.equal('E');
+                });
+                expect(res.body.shoppingCart.cartPricePay).least(1);
+                expect(res.body.shoppingCart.cartPriceTotal).least(1);
+                expect(res.body.productNum).equal(1);
                 done();
             });
     });

@@ -1,5 +1,6 @@
 /// <reference path="../../../include.d.ts" />
 
+var fs = require('fs');
 var os = require('os');
 var supertest = require('supertest');
 var should = require("should");
@@ -7,6 +8,10 @@ var conf = require('../../../configuration.js');
 var CONST = conf.CONST;
 var util = require('../../../toolkits.js');
 var __path = util.getPath;
+var expect = require('chai').expect;
+var deep = require('deep-diff')
+var observableDiff = require('deep-diff').observableDiff;
+var applyChange = require('deep-diff').applyChange;
 
 var tester = supertest.agent('http://app.milanoo.com');
 
@@ -289,8 +294,12 @@ describe('首页推荐', function () {
         tester.get(__path(__filename) + 'memberId=3654781&cookieId=d89494b768dff5a36d273d60d&returnNum=20')
             .expect(200)
             .end(function (err, res) {
-                res.should.be.json;
-                res.body.should.eql(expected);
+                expect(res.status).to.equal(200);
+                expect(res.body.msg).to.eql("操作成功");
+                expect(res.body.code).to.eql("0");
+                expect(res.body.top_selling_num).to.equal(20);
+                expect(res.body.view_to_buy_num).to.equal(0);
+                expect(res.body.list.length).to.be.least(1);
                 done();
             });
     });
