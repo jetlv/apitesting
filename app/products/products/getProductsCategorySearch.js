@@ -7,6 +7,9 @@ var conf = require('../../../configuration.js');
 var CONST = conf.CONST;
 var util = require('../../../toolkits.js');
 var __path = util.getPath;
+var expect = require('chai').expect;
+var deep = require('deep-diff')
+var observableDiff = require('deep-diff').observableDiff;
 
 var tester = supertest.agent('http://app.milanoo.com');
 
@@ -123,10 +126,7 @@ describe('列表页及搜索接口', function () {
                     "websiteId": 1,
                     "review": 0,
                     "stockNum": 0,
-                    "productConfiguration": ["Group||||Women",
-                        "Occasion||||Beach||||Wedding",
-                        "Style||||Sexy||||Elegant",
-                        "Shown Color||||White||||Blue"],
+                    "productConfiguration": [],
                     "productPriceRate": 6.99,
                     "marketPriceRate": 22.08,
                     "imgs": ["tb2013/tb201305/tb20130529/52850f65-1dcb-49c4-9f85-881e4acfac7d.jpg",
@@ -193,8 +193,9 @@ describe('列表页及搜索接口', function () {
         tester.get(__path(__filename) + 'pcs.languageCode=en-uk&pcs.searchContent=307640')
             .expect(200)
             .end(function (err, res) {
-                res.should.be.json;
-                res.body.should.eql(expected);
+                observableDiff(expected, res.body, function(d) {
+                    expect(d.kind, JSON.stringify(d).replace(/"/g, '\'')).to.not.equal('E');
+                });
                 done();
             });
     });
