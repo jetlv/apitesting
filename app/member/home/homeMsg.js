@@ -7,6 +7,9 @@ var conf = require('../../../configuration.js');
 var CONST = conf.CONST;
 var util = require('../../../toolkits.js');
 var __path = util.getPath;
+var observableDiff = require('deep-diff').observableDiff;
+var chai = require('chai');
+var expect = chai.expect;
 
 var tester = supertest.agent('http://app.milanoo.com');
 
@@ -29,14 +32,16 @@ describe('用户综合信息', function () {
             "orderMsg": {
 
             },
-            "code": "0",
-            "couponMsg": 5
+            "code": "0"
         };
         tester.get(__path(__filename) + 'memberId=3790289&langCode=en-uk&websiteId=1&deviceType=1&websiteIdLastView=1')
             .expect(200)
             .end(function (err, res) {
-                res.should.be.json;
-                res.body.should.eql(expected);
+                // console.log(res.body);
+                expect(res.body.msg).eql('操作成功');
+                observableDiff(expected, res.body , function (d) {
+                    expect(d.kind, JSON.stringify(d).replace(/"/g, '\'')).to.not.equal('E');
+                })
                 done();
             });
     });
