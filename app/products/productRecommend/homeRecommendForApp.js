@@ -1,19 +1,8 @@
 /// <reference path="../../../include.d.ts" />
 
-var fs = require('fs');
-var os = require('os');
-var supertest = require('supertest');
-var should = require("should");
-var conf = require('../../../configuration.js');
-var CONST = conf.CONST;
-var util = require('../../../toolkits.js');
-var __path = util.getPath;
-var expect = require('chai').expect;
-var deep = require('deep-diff')
-var observableDiff = require('deep-diff').observableDiff;
-var applyChange = require('deep-diff').applyChange;
-
-var tester = supertest.agent('http://app.milanoo.com');
+var R = require('../../../req.js');
+var expect = R.expect;
+var tester = R.supertest.agent('http://app.milanoo.com');
 
 describe('首页推荐', function () {
     it('基于用户推荐', function (done) {
@@ -291,7 +280,7 @@ describe('首页推荐', function () {
                     "fastDelivery": 1
                 }]
         }
-        tester.get(__path(__filename) + 'memberId=3654781&cookieId=d89494b768dff5a36d273d60d&returnNum=20')
+        tester.get(R.__path(__filename) + 'memberId=3654781&cookieId=d89494b768dff5a36d273d60d&returnNum=20')
             .expect(200)
             .end(function (err, res) {
                 expect(res.status).to.equal(200);
