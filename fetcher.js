@@ -82,7 +82,7 @@ function singleFetch(url, callback) {
             var apiSum = $('.tableList tr').eq(2).find('td').eq(1).text();
             var tw = [];
             tw.push('//' + url);
-            tw.push('AUTOMATICALLY GENERATED, NEED TO BE MODIFIED');
+            tw.push('//AUTOMATICALLY GENERATED, NEED TO BE MODIFIED');
             tw.push('\r\n');
             tw.push('/**');
             if ($('.tableInner').text()) {

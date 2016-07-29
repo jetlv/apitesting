@@ -1,1 +1,1 @@
-app/promotion/game/gameInfo.js 写入完毕
+app/products/products/findSkuIdOfHaveStockByProductIds.js 写入完毕
