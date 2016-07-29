@@ -81,6 +81,7 @@ function singleFetch(url, callback) {
             var apiSum = $('.tableList tr').eq(2).find('td').eq(1).text();
             var tw = [];
             tw.push('//' + url);
+            tw.push('AUTOMATICALLY GENERATED, NEED TO BE MODIFIED');
             tw.push('\r\n');
             tw.push('/**');
             if ($('.tableInner').text()) {
@@ -92,7 +93,7 @@ function singleFetch(url, callback) {
                     tw.push($(this).find('td').eq(0).text().trim() + COLUMN_SEPARATOR + $(this).find('td').eq(1).text().trim() + COLUMN_SEPARATOR + $(this).find('td').eq(2).text().trim());
                 });
             }
-            tw.push('\r\n ** /');
+            tw.push('\r\n **/');
             tw.push('\r\n');
             tw.push('/// <reference path="../../../include.d.ts" />\r\n');
             tw.push("var R = require('../../../req.js');\r\n");
@@ -114,10 +115,10 @@ function singleFetch(url, callback) {
             } catch (err) {
                 fs.appendFileSync('error.log', err + ' ' + url + '\r\n');
             }
-            console.log('I have done ' + url);
+            // console.log('I have done ' + url);
             callback();
         } else {
-            console.log('I have done ' + url);
+            // console.log('I have done ' + url);
             callback();
         }
     });
