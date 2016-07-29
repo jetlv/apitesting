@@ -13,7 +13,7 @@ var tester = R.supertest.agent('http://app.milanoo.com');
 
 
 
-describe('接口说明获取O2O APP站所有分类及子分类信息', function () {
+describe('获取O2O APP站所有分类及子分类信息', function () {
 
    it('基本验证', function (done) {
 

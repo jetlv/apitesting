@@ -13,7 +13,7 @@ var tester = R.supertest.agent('http://app.milanoo.com');
 
 
 
-describe('接口说明获取O2O APP站所有商品的图片的URL', function () {
+describe('获取O2O APP站所有商品的图片的URL', function () {
 
    it('基本验证', function (done) {
 

@@ -13,7 +13,7 @@ var tester = R.supertest.agent('http://app.milanoo.com');
 
 
 
-describe('接口说明通过商品ID获取商品详情', function () {
+describe('通过商品ID获取商品详情', function () {
 
    it('基本验证', function (done) {
 

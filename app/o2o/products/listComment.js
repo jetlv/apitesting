@@ -13,7 +13,7 @@ var tester = R.supertest.agent('http://app.milanoo.com');
 
 
 
-describe('接口说明查询商品的评论列表。', function () {
+describe('查询商品的评论列表。', function () {
 
    it('基本验证', function (done) {
 

@@ -13,7 +13,7 @@ var tester = R.supertest.agent('http://app.milanoo.com');
 
 
 
-describe('接口说明查询所有汇率', function () {
+describe('查询所有汇率', function () {
 
    it('基本验证', function (done) {
 

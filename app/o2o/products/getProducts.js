@@ -13,7 +13,7 @@ var tester = R.supertest.agent('http://app.milanoo.com');
 
 
 
-describe('接口说明通过分类ID、非销售属性获取商品（并返回商品详情），并返回该分类的所有非销售属性（逻辑同主站列表页）', function () {
+describe('通过分类ID、非销售属性获取商品（并返回商品详情），并返回该分类的所有非销售属性（逻辑同主站列表页）', function () {
 
    it('基本验证', function (done) {
 
