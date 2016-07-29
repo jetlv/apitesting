@@ -13,19 +13,19 @@ var tester = R.supertest.agent('http://app.milanoo.com');
 
 
 
-describe('接口说明查询评论的图片', function () {
+describe('查询评论的图片', function () {
 
-   it('基本验证', function (done) {
+    it('基本验证', function (done) {
 
-       var fullPath = 'http://app.milanoo.com/app/o2o/review/reviewPictures.htm?websiteId=7&languageCode=fr-fr&returnNum=5';
-       tester.get(__path(__filename) + 'websiteId=7&languageCode=fr-fr&returnNum=5')
+        var fullPath = 'http://app.milanoo.com/app/o2o/review/reviewPictures.htm?websiteId=7&languageCode=fr-fr&returnNum=5';
+        tester.get(__path(__filename) + 'websiteId=7&languageCode=fr-fr&returnNum=5')
 
-               .end(function (err, res) {
+            .end(function (err, res) {
 
-                   expect(res.status).eql(200);
+                expect(res.status).eql(200);
 
-                   done();
+                done();
 
-});
-});
+            });
+    });
 });

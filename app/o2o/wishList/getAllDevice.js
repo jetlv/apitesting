@@ -13,19 +13,19 @@ var tester = R.supertest.agent('http://app.milanoo.com');
 
 
 
-describe('接口说明获取所有设置信息', function () {
+describe('获取所有设置信息', function () {
 
-   it('基本验证', function (done) {
+    it('基本验证', function (done) {
 
-       var fullPath = 'http://app.milanoo.com/app/o2o/wishList/getAllDevice.htm';
-       tester.get(__path(__filename) + 'undefined')
+        var fullPath = 'http://app.milanoo.com/app/o2o/wishList/getAllDevice.htm';
+        tester.get(__path(__filename) + '')
 
-               .end(function (err, res) {
+            .end(function (err, res) {
 
-                   expect(res.status).eql(200);
+                expect(res.status).eql(200);
 
-                   done();
+                done();
 
-});
-});
+            });
+    });
 });

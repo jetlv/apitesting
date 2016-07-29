@@ -4,7 +4,7 @@
   "description": "Api automation framework",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha app/**/*.js --recursive -R xunit > apitest-reports.xml"
+    "test": "./node_modules/.bin/mocha app/**/*.js products/**/*.js --recursive -R xunit > apitest-reports.xml"
   },
   "author": "",
   "license": "ISC",

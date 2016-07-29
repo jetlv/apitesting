@@ -18,7 +18,7 @@ describe('查询所有汇率', function () {
    it('基本验证', function (done) {
 
        var fullPath = 'http://app.milanoo.com/app/o2o/products/findAllExchangeRate.htm';
-       tester.get(__path(__filename) + 'undefined')
+       tester.get(__path(__filename) + '')
 
                .end(function (err, res) {
 
