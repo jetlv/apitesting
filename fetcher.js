@@ -60,13 +60,14 @@ function writeFileByPath(level1, level2, fileName, content) {
 }
 
 
-singleFetch('http://192.168.11.16:8680/doc/doc/detail.htm?methodId=5916', new Function());
+// singleFetch('http://192.168.11.16:8680/doc/doc/detail.htm?methodId=5916', new Function());
 /**
  * 单个fetch，只抓有例子的
  */
 function singleFetch(url, callback) {
 
     request.get(url, function (err, resp, body) {
+        if(err) console.log(err);
         // fs.appendFileSync('body.txt', body);
         var $ = cheerio.load(body);
         // console.log($('.mainDiv .tableList').find('tr').eq(4).find('th').eq(1).text());
@@ -115,11 +116,16 @@ function singleFetch(url, callback) {
             } catch (err) {
                 fs.appendFileSync('error.log', err + ' ' + url + '\r\n');
             }
-            // console.log('I have done ' + url);
-            callback();
+            console.log('I have done ' + url);
+            setTimeout(function () {
+                callback();
+            }, 500);
+
         } else {
-            // console.log('I have done ' + url);
-            callback();
+            console.log('I have done ' + url);
+            setTimeout(function () {
+                callback();
+            }, 500);
         }
     });
 }
@@ -137,7 +143,7 @@ function all() {
         })(i);
     }
 
-    async.mapLimit(urls, 4, function (url, callback) {
+    async.mapLimit(urls, 3, function (url, callback) {
         singleFetch(url, callback);
     }, function (err) {
         if (err) console.log(err);
