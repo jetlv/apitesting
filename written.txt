@@ -1,0 +1,1 @@
+app/promotion/game/gameInfo.js 写入完毕

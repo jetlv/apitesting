@@ -10,7 +10,7 @@ const COLUMN_SEPARATOR = '         |          ';
  * 写文件函数
  */
 function writeFileByPath(level1, level2, fileName, content) {
-    var options = { encoding: 'utf8', mode: 438 /*=0666*/, flag: 'w' };
+    var options = { encoding: 'utf8', flag: 'w' };
     fs.exists('app/' + level1, function (exists) {
         if (!exists) {
             console.log('一级目录都不存在，文件必定不存在');
@@ -82,6 +82,7 @@ function singleFetch(url, callback) {
             var tw = [];
             tw.push('//' + url);
             tw.push('\r\n');
+            tw.push('/**');
             if ($('.tableInner').text()) {
                 $('.tableInner tr').each(function (index, line) {
                     if (index === 0) {
@@ -91,7 +92,7 @@ function singleFetch(url, callback) {
                     tw.push($(this).find('td').eq(0).text().trim() + COLUMN_SEPARATOR + $(this).find('td').eq(1).text().trim() + COLUMN_SEPARATOR + $(this).find('td').eq(2).text().trim());
                 });
             }
-            tw.push('\r\n * /');
+            tw.push('\r\n ** /');
             tw.push('\r\n');
             tw.push('/// <reference path="../../../include.d.ts" />\r\n');
             tw.push("var R = require('../../../req.js');\r\n");
