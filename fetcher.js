@@ -70,7 +70,7 @@ function singleFetch(url, callback) {
         var apiAccessLink = $('a').eq(2).attr('href');
         if (apiAccessLink) {
             console.log(apiAccessLink);
-            var onlineFullPath = apiAccessLink.replace(/192.*\//, 'app.milanoo.com');
+            // var onlineFullPath = apiAccessLink.replace(/192.*\//, 'app.milanoo.com');
             var level1 = apiAccessLink.split('/')[4];
             var level2 = apiAccessLink.split('/')[5];
             var fileName = apiAccessLink.split('/')[6].split('?')[0].match(/\w+/)[0];
@@ -79,15 +79,26 @@ function singleFetch(url, callback) {
             var tw = [];
             tw.push('//' + url);
             tw.push('\r\n');
+            if ($('.tableInner').text()) {
+                $('.tableInner tr').each(function (index, line) {
+                    if (index === 0) {
+                        tw.push($(this).find('th').eq(0).text().trim() + COLUMN_SEPARATOR + $(this).find('th').eq(1).text().trim() + COLUMN_SEPARATOR + $(this).find('th').eq(2).text().trim());
+                        return;
+                    }
+                    tw.push($(this).find('td').eq(0).text().trim() + COLUMN_SEPARATOR + $(this).find('td').eq(1).text().trim() + COLUMN_SEPARATOR + $(this).find('td').eq(2).text().trim());
+                });
+            }
+            tw.push('\r\n * /');
+            tw.push('\r\n');
             tw.push('/// <reference path="../../../include.d.ts" />\r\n');
             tw.push("var R = require('../../../req.js');\r\n");
             tw.push("var expect = R.expect;\r\n");
             tw.push("var __path = R.__path;\r\n");
-            tw.push("var tester = R.supertest.agent('http://app.milanoo.com');\r\n");
+            tw.push("var tester = R.supertest.agent(R.CONST.APP_ADDRESS_TESTENV);\r\n");
             tw.push("\r\n");
             tw.push("describe('" + apiSum + "', function () {\r\n");
             tw.push("   it('基本验证', function (done) {\r\n");
-            tw.push("       var fullPath = '" + onlineFullPath + "';");
+            tw.push("       var fullPath = '" + apiAccessLink + "';");
             tw.push("       tester.get(__path(__filename) + '" + params + "')\r\n");
             tw.push("               .end(function (err, res) {\r\n");
             tw.push("                   expect(res.status).eql(200);\r\n");
