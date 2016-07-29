@@ -16,7 +16,7 @@ function writeFileByPath(level1, level2, fileName, content) {
             console.log('一级目录都不存在，文件必定不存在');
             fs.mkdir('app/' + level1, function (err) {
                 fs.mkdir('app/' + level1 + '/' + level2, function (err) {
-                    fs.writeFile('app/' + level1 + '/' + level2 + '/' + fileName, "test", content, options, function (err) {
+                    fs.writeFile('app/' + level1 + '/' + level2 + '/' + fileName, content, options, function (err) {
                         if (err) console.log(err);
                         console.log('app/' + level1 + '/' + level2 + '/' + fileName + ' 写入完毕');
                     });
@@ -116,19 +116,21 @@ function singleFetch(url, callback) {
             } catch (err) {
                 fs.appendFileSync('error.log', err + ' ' + url + '\r\n');
             }
-            console.log('I have done ' + url);
-            setTimeout(function () {
+            // console.log('I have done ' + url);
+            // setTimeout(function () {
                 callback();
-            }, 500);
+            // }, 500);
 
         } else {
-            console.log('I have done ' + url);
-            setTimeout(function () {
+            // console.log('I have done ' + url);
+            // setTimeout(function () {
                 callback();
-            }, 500);
+            // }, 500);
         }
     });
 }
+
+all();
 /** 遍历java文档中心，做所有接口的基本代码生成 
  *  暂不适用 - 可能有危险接口
 */
