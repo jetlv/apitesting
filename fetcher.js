@@ -58,6 +58,9 @@ function writeFileByPath(level1, level2, fileName, content) {
 
     });
 }
+
+
+singleFetch('http://192.168.11.16:8680/doc/doc/detail.htm?methodId=5916', new Function());
 /**
  * 单个fetch，只抓有例子的
  */
@@ -71,9 +74,9 @@ function singleFetch(url, callback) {
         if (apiAccessLink) {
             console.log(apiAccessLink);
             // var onlineFullPath = apiAccessLink.replace(/192.*\//, 'app.milanoo.com');
-            var level1 = apiAccessLink.split('/')[4];
-            var level2 = apiAccessLink.split('/')[5];
-            var fileName = apiAccessLink.split('/')[6].split('?')[0].match(/\w+/)[0];
+            var level1 = apiAccessLink.split('/')[3];
+            var level2 = apiAccessLink.split('/')[4];
+            var fileName = apiAccessLink.split('/')[5].split('?')[0].match(/\w+/)[0];
             var params = apiAccessLink.split('?')[1] ? apiAccessLink.split('?')[1] : '';
             var apiSum = $('.tableList tr').eq(2).find('td').eq(1).text();
             var tw = [];

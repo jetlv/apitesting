@@ -12,7 +12,7 @@ describe('商品详情', function () {
 
     it('基本验证', function (done) {
 
-        console.log(__path(__filename));
+        // console.log(__path(__filename));
         var fullPath = 'http://app.milanoo.com/products/products/productDetails.htm?productId=385967&websiteId=1&languageCode=en-uk&deviceType=1&websiteIdLastView=1';
         tester.get(__path(__filename) + 'productId=385967&websiteId=1&languageCode=en-uk&deviceType=1&websiteIdLastView=1')
             .end(function (err, res) {
