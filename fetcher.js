@@ -68,9 +68,9 @@ function singleFetch(url, callback) {
         var $ = cheerio.load(body);
         // console.log($('.mainDiv .tableList').find('tr').eq(4).find('th').eq(1).text());
         var apiAccessLink = $('a').eq(2).attr('href');
-        if (apiAccessLink && apiAccessLink.split('/')[3] === 'app') {
+        if (apiAccessLink) {
             console.log(apiAccessLink);
-            var onlineFullPath = apiAccessLink.replace(/192.*\/app/, 'app.milanoo.com/app');
+            var onlineFullPath = apiAccessLink.replace(/192.*\//, 'app.milanoo.com');
             var level1 = apiAccessLink.split('/')[4];
             var level2 = apiAccessLink.split('/')[5];
             var fileName = apiAccessLink.split('/')[6].split('?')[0].match(/\w+/)[0];
@@ -190,5 +190,5 @@ function singleFetchApiWhatever(url, fp) {
     });
 }
 
-singleFetchApiWhatever('http://192.168.11.16:8680/doc/doc/detail.htm?methodId=8476');
+// singleFetchApiWhatever('http://192.168.11.16:8680/doc/doc/detail.htm?methodId=8476');
 

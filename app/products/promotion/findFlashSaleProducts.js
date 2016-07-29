@@ -9,7 +9,7 @@ var util = require('../../../toolkits.js');
 var __path = util.getPath;
 var tester = supertest.agent('http://app.milanoo.com');
 var expect = require('chai').expect;
-var deep = require('deep-diff')
+var deep = require('deep-diff');
 var observableDiff = require('deep-diff').observableDiff;
 describe('闪购接口', function () {
     it('获取闪购商品', function (done) {
