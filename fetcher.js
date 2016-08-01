@@ -10,13 +10,13 @@ const COLUMN_SEPARATOR = '         |          ';
  * 写文件函数
  */
 function writeFileByPath(level1, level2, fileName, content) {
-    var options = { encoding: 'utf8', mode: 438 /*=0666*/, flag: 'w' };
+    var options = { encoding: 'utf8', flag: 'w' };
     fs.exists('app/' + level1, function (exists) {
         if (!exists) {
             console.log('一级目录都不存在，文件必定不存在');
             fs.mkdir('app/' + level1, function (err) {
                 fs.mkdir('app/' + level1 + '/' + level2, function (err) {
-                    fs.writeFile('app/' + level1 + '/' + level2 + '/' + fileName, "test", content, options, function (err) {
+                    fs.writeFile('app/' + level1 + '/' + level2 + '/' + fileName, content, options, function (err) {
                         if (err) console.log(err);
                         console.log('app/' + level1 + '/' + level2 + '/' + fileName + ' 写入完毕');
                     });
@@ -58,36 +58,54 @@ function writeFileByPath(level1, level2, fileName, content) {
 
     });
 }
+
+
+// singleFetch('http://192.168.11.16:8680/doc/doc/detail.htm?methodId=5916', new Function());
 /**
  * 单个fetch，只抓有例子的
  */
 function singleFetch(url, callback) {
 
     request.get(url, function (err, resp, body) {
+        if(err) console.log(err);
         // fs.appendFileSync('body.txt', body);
         var $ = cheerio.load(body);
         // console.log($('.mainDiv .tableList').find('tr').eq(4).find('th').eq(1).text());
         var apiAccessLink = $('a').eq(2).attr('href');
         if (apiAccessLink) {
             console.log(apiAccessLink);
-            var onlineFullPath = apiAccessLink.replace(/192.*\//, 'app.milanoo.com');
-            var level1 = apiAccessLink.split('/')[4];
-            var level2 = apiAccessLink.split('/')[5];
-            var fileName = apiAccessLink.split('/')[6].split('?')[0].match(/\w+/)[0];
+            // var onlineFullPath = apiAccessLink.replace(/192.*\//, 'app.milanoo.com');
+            var level1 = apiAccessLink.split('/')[3];
+            var level2 = apiAccessLink.split('/')[4];
+            var fileName = apiAccessLink.split('/')[5].split('?')[0].match(/\w+/)[0];
             var params = apiAccessLink.split('?')[1] ? apiAccessLink.split('?')[1] : '';
             var apiSum = $('.tableList tr').eq(2).find('td').eq(1).text();
             var tw = [];
             tw.push('//' + url);
+            tw.push('//AUTOMATICALLY GENERATED, NEED TO BE MODIFIED');
+            tw.push('/** ' + apiSum + '**/');
+            tw.push('\r\n');
+            tw.push('/**');
+            if ($('.tableInner').text()) {
+                $('.tableInner tr').each(function (index, line) {
+                    if (index === 0) {
+                        tw.push($(this).find('th').eq(0).text().trim() + COLUMN_SEPARATOR + $(this).find('th').eq(1).text().trim() + COLUMN_SEPARATOR + $(this).find('th').eq(2).text().trim());
+                        return;
+                    }
+                    tw.push($(this).find('td').eq(0).text().trim() + COLUMN_SEPARATOR + $(this).find('td').eq(1).text().trim() + COLUMN_SEPARATOR + $(this).find('td').eq(2).text().trim());
+                });
+            }
+            tw.push('\r\n **/');
             tw.push('\r\n');
             tw.push('/// <reference path="../../../include.d.ts" />\r\n');
             tw.push("var R = require('../../../req.js');\r\n");
             tw.push("var expect = R.expect;\r\n");
             tw.push("var __path = R.__path;\r\n");
-            tw.push("var tester = R.supertest.agent('http://app.milanoo.com');\r\n");
+            tw.push("var tester = R.supertest.agent(R.CONST.APP_ADDRESS_TESTENV);\r\n");
             tw.push("\r\n");
-            tw.push("describe('" + apiSum + "', function () {\r\n");
+            tw.push("describe('" + fileName + "', function () {\r\n");
             tw.push("   it('基本验证', function (done) {\r\n");
-            tw.push("       var fullPath = '" + onlineFullPath + "';");
+            tw.push("       var fullPath = '" + apiAccessLink + "';");
             tw.push("       tester.get(__path(__filename) + '" + params + "')\r\n");
             tw.push("               .end(function (err, res) {\r\n");
             tw.push("                   expect(res.status).eql(200);\r\n");
@@ -99,29 +117,37 @@ function singleFetch(url, callback) {
             } catch (err) {
                 fs.appendFileSync('error.log', err + ' ' + url + '\r\n');
             }
-            console.log('I have done ' + url);
-            callback();
+            // console.log('I have done ' + url);
+            setTimeout(function () {
+                console.log(url + ' done');
+                callback();
+            }, 2000);
+
         } else {
-            console.log('I have done ' + url);
-            callback();
+            // console.log('I have done ' + url);
+            setTimeout(function () {
+                console.log(url + ' done');
+                callback();
+            }, 2000);
         }
     });
 }
+
+all();
 /** 遍历java文档中心，做所有接口的基本代码生成 
  *  暂不适用 - 可能有危险接口
 */
 function all() {
     var urls = [];
 
-    for (var i = 1; i < 9000; i++) {
+    for (var i = 0; i < 5000; i++) {
         (function (i) {
             var k = i;
             var url = "http://192.168.11.16:8680/doc/doc/detail.htm?methodId=" + k;
             urls.push(url);
         })(i);
     }
-
-    async.mapLimit(urls, 4, function (url, callback) {
+    async.mapLimit(urls.reverse(), 6, function (url, callback) {
         singleFetch(url, callback);
     }, function (err) {
         if (err) console.log(err);

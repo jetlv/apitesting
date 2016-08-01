@@ -1,0 +1,1 @@
+app/promotion/doorwayPages/list.js 写入完毕
