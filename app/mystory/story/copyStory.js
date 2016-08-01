@@ -1,5 +1,5 @@
 //http://192.168.11.16:8680/doc/doc/detail.htm?methodId=6189
-//AUTOMATICALLY GENERATED, NEED TO BE MODIFIED
+//本接口不予测试，属于危险接口
 /** mystory复制**/
 
 
@@ -27,16 +27,14 @@ var tester = R.supertest.agent(R.CONST.APP_ADDRESS_TESTENV);
 describe('copyStory', function () {
 
    it('基本验证', function (done) {
+    //本接口不予测试，属于危险接口
+    //    var fullPath = 'http://192.168.11.16:8080/mystory/story/copyStory.htm?websiteIdFrom=1&langCode=en-uk&websiteIdTo=3';
+    //    tester.get(__path(__filename) + 'websiteIdFrom=1&langCode=en-uk&websiteIdTo=3')
 
-       var fullPath = 'http://192.168.11.16:8080/mystory/story/copyStory.htm?websiteIdFrom=1&langCode=en-uk&websiteIdTo=3';
-       tester.get(__path(__filename) + 'websiteIdFrom=1&langCode=en-uk&websiteIdTo=3')
+    //            .end(function (err, res) {
 
-               .end(function (err, res) {
-
-                   expect(res.status).eql(200);
+    //                expect(res.status).eql(200);
 
                    done();
-
-});
 });
 });

@@ -1,5 +1,5 @@
 //http://192.168.11.16:8680/doc/doc/detail.htm?methodId=8158
-//AUTOMATICALLY GENERATED, NEED TO BE MODIFIED
+//level=4
 /** 添加Case，注意：前台可以添加售前、售后CASE，后台可以添加Issue CASE； 此接口不能添加RMA类型的CASE，RMA CASE在提交RMA时系统自动添加。**/
 
 
@@ -43,13 +43,13 @@ var tester = R.supertest.agent(R.CONST.APP_ADDRESS_TESTENV);
 describe('addCase', function () {
 
    it('基本验证', function (done) {
-
-       var fullPath = 'http://192.168.11.16:8080/crm/case/addCase.htm?c.caseType=1&c.memberId=400&c.memberName=chepoo&c.memberEmail=chenbo@milanoo.com&c.classId=23&c.content=客服态度差&c.images=2014/201407/20140717/20140717141903330SYbaBh.jpg|2014/201407/20140717/20140717141903352yYdaPJ.jpg&c.createIp=192.168.6.41&c.websiteId=1&c.lang=en-uk&c.deviceType=1';
-       tester.get(__path(__filename) + 'c.caseType=1&c.memberId=400&c.memberName=chepoo&c.memberEmail=chenbo@milanoo.com&c.classId=23&c.content=客服态度差&c.images=2014/201407/20140717/20140717141903330SYbaBh.jpg|2014/201407/20140717/20140717141903352yYdaPJ.jpg&c.createIp=192.168.6.41&c.websiteId=1&c.lang=en-uk&c.deviceType=1')
+       //本接口到此为止，因为会自动给CRM系统提交Case，属于较危险接口
+       var fullPath = 'http://192.168.11.16:8080/crm/case/addCase.htm?c.caseType=1&c.memberId=400&c.memberName=MilanooRobotTester&c.memberEmail=qa@milanoo.com&c.classId=23&c.content=YouHaveTerribleAttitude&c.images=2014/201407/20140717/20140717141903330SYbaBh.jpg|2014/201407/20140717/20140717141903352yYdaPJ.jpg&c.createIp=192.168.6.41&c.websiteId=1&c.lang=en-uk&c.deviceType=1';
+       tester.get(__path(__filename) + 'c.caseType=1&c.memberId=400&c.memberName=MilanooRobotTester&c.memberEmail=qa@milanoo.com&c.classId=23&c.content=YouHaveTerribleAttitude&c.images=2014/201407/20140717/20140717141903330SYbaBh.jpg|2014/201407/20140717/20140717141903352yYdaPJ.jpg&c.createIp=192.168.6.41&c.websiteId=1&c.lang=en-uk&c.deviceType=1')
 
                .end(function (err, res) {
 
-                   expect(res.status).eql(200);
+                //    expect(res.status).eql(200);
 
                    done();
 

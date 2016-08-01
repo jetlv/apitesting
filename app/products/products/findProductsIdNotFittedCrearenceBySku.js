@@ -34,5 +34,5 @@ describe('findProductsIdNotFittedCrearenceBySku', function () {
                    done();
 
 });
-});
+}, 50000);
 });

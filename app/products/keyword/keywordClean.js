@@ -1,5 +1,5 @@
 //http://192.168.11.16:8680/doc/doc/detail.htm?methodId=6258
-//AUTOMATICALLY GENERATED, NEED TO BE MODIFIED
+//level=5
 /** **/
 
 
@@ -28,14 +28,13 @@ describe('keywordClean', function () {
    it('基本验证', function (done) {
 
        var fullPath = 'http://192.168.11.16:8080/products/keyword/keywordClean.htm?languageCode=en-uk&websiteId=1';
-       tester.get(__path(__filename) + 'languageCode=en-uk&websiteId=1')
+    //    tester.get(__path(__filename) + 'languageCode=en-uk&websiteId=1')
 
-               .end(function (err, res) {
+    //            .end(function (err, res) {
 
-                   expect(res.status).eql(200);
-
+    //                expect(res.status).eql(200);
+        //本接口属于危险接口（属于删除操作，非常危险），不予测试
                    done();
 
-});
 });
 });

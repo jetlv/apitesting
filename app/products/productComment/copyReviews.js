@@ -1,5 +1,4 @@
 //http://192.168.11.16:8680/doc/doc/detail.htm?methodId=6274
-//AUTOMATICALLY GENERATED, NEED TO BE MODIFIED
 /** 评论复制**/
 
 
@@ -29,14 +28,12 @@ describe('copyReviews', function () {
    it('基本验证', function (done) {
 
        var fullPath = 'http://192.168.11.16:8080/products/productComment/copyReviews.htm?websiteIdFrom=1&langCode=en-uk&websiteIdTo=3';
-       tester.get(__path(__filename) + 'websiteIdFrom=1&langCode=en-uk&websiteIdTo=3')
+    //    tester.get(__path(__filename) + 'websiteIdFrom=1&langCode=en-uk&websiteIdTo=3')
 
-               .end(function (err, res) {
+    //            .end(function (err, res) {
 
-                   expect(res.status).eql(200);
-
+    //                expect(res.status).eql(200);
+    // 本接口会执行大量DB操作，不予自动化
                    done();
-
-});
 });
 });
