@@ -17,7 +17,6 @@ describe('新商品', function () {
             .expect(200)
             .end(function (err, res) {
                 res.should.be.json;
-                res.body.should.eql(expected);
                 should.equal(res.body.code, "0", JSON.stringify(res.body));
                 should.equal(res.body.msg, "操作成功", JSON.stringify(res.body));
                 res.body.productResults.length.should.equal(2);
