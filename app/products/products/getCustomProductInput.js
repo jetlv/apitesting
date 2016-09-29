@@ -27,7 +27,7 @@ describe('高定-选项获取', function () {
                     expect(body.msg).equal("操作成功");
                     return body;
                 }).then(body => {
-                    expect(body.code).equal("0");
+                    expect(body.code).equal("1");
                     done();
                     return body;
                 }).catch(err => {
