@@ -1,0 +1,36 @@
+/// <reference path="../../../include.d.ts" />
+var conf = require('../../../configuration.js');
+var CONST = conf.CONST;
+var R = require('../../../req.js');
+var expect = R.expect;
+var __path = R.__path;
+var Promise = require('bluebird');
+var supertest = R.supertest;
+
+var env = CONST.APP_ADDRESS_TESTENV;
+var tester = supertest.agent(env);
+
+describe('请填入接口的名称或描述', function () {
+
+    it('请填入用例的测试点', function (done) {
+        var params = '请在这里输入参数';
+        tester.get(__path(__filename) + params)
+            .end(function (err, res) {
+                new Promise(function (resolve, reject) {
+                    var body = res.body;
+                    resolve(body);
+                }).then(body => {
+                    expect(body.msg).equal("操作成功");
+                    return body;
+                }).then(body => {
+                    expect(body.code).equal("0");
+                    done();
+                    return body;
+                }).catch(err => {
+                    console.log(env + url + params);
+                    console.log(JSON.stringify(res.body));
+                    done(err);
+                });
+    });
+});
+});
