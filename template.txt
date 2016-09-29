@@ -27,9 +27,7 @@ describe('请填入接口的名称或描述', function () {
                     done();
                     return body;
                 }).catch(err => {
-                    console.log(env + url + params);
-                    console.log(JSON.stringify(res.body));
-                    done(err);
+                    done(err + '\r\n\r\n' + 'FullPath is : ' + env + url + params + '\r\n\r\n' + 'Actual output: ' + JSON.stringify(res.body) + '\r\n');
                 });
     });
 });
