@@ -31,9 +31,7 @@ describe('高定-选项获取', function () {
                     done();
                     return body;
                 }).catch(err => {
-                    process.stdout.write(env + url + params + '\r\n');
-                    process.stdout.write(JSON.stringify(res.body) + '\r\n');
-                    done(err);
+                    done(err + '\r\n\r\n' + 'FullPath is : ' + env + url + params + '\r\n\r\n' + 'Actual output: ' + JSON.stringify(res.body) + '\r\n');
                 });
             });
     });
