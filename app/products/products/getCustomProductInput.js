@@ -31,8 +31,8 @@ describe('高定-选项获取', function () {
                     done();
                     return body;
                 }).catch(err => {
-                    console.log(env + url + params);
-                    console.log(JSON.stringify(res.body));
+                    process.stdout.write(env + url + params + '\r\n');
+                    process.stdout.write(JSON.stringify(res.body) + '\r\n');
                     done(err);
                 });
             });
