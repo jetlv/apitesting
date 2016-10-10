@@ -9,9 +9,15 @@
 
 // console.log(apiAccessLink.replace(/192.*\/app/, 'app.milanoo.com/app'));
 
-var url = "http://192.168.11.16:8080/app/pushMessage/updateToken.htm?mt.token=3fdfedg2qfdfewtesdf&mt.lang=en-uk&mt.tokenType=0";
+// var url = "http://192.168.11.16:8080/app/pushMessage/updateToken.htm?mt.token=3fdfedg2qfdfewtesdf&mt.lang=en-uk&mt.tokenType=0";
 
-var path = url.match(/8080\/.*\.htm/)[0];
+// var path = url.match(/8080\/.*\.htm/)[0];
 
-var arr = path.match(/[A-Za-z]+/g);
-console.log(arr);
+// var arr = path.match(/[A-Za-z]+/g);
+// console.log(arr);
+
+var md5 = require('md5');
+
+var str = 'password=abc&username=def&nyxKey=key';
+
+console.log(md5(str).toUpperCase());
