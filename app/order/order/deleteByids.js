@@ -13,7 +13,7 @@ var tester = supertest.agent(env);
 var mhelper = supertest.agent(CONST.MHELPER_ADDRESS);
 
 /** 在进行本接口测试的同时，也测试到了Import的接口。MHelper的业务逻辑验证了import，如果失败，本接口也会报错 */
-describe('删除订单接口', function () {
+describe('Nileoo删除订单接口', function () {
 
     var front;
     var back;
