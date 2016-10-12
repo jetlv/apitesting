@@ -202,7 +202,7 @@ describe('Nileoo订单查询', function () {
 
     it('综合查询', function (done) {
         var url = __path(__filename, 1);
-        var params = 'pageNo=0&pageSize=10&delivery=Fedex&hasPrint=0&createTimeGe=2016-01-01&createTimeLe=2016-12-30&orderNumber=ie_wd_160930162212_001&memberId=1';
+        var params = 'pageNo=0&pageSize=10&delivery=Fedex&hasPrint=1&createTimeGe=2016-01-01&createTimeLe=2016-12-30&orderNumber=ie_wd_160930162212_001&memberId=1';
         tester.get(url + params)
             .end(function (err, res) {
                 new Promise(function (resolve, reject) {

@@ -78,8 +78,12 @@ describe('Nileoo删除订单接口', function () {
                 }).then(body => {
                     tester.get('/order/order/getOrderPages.json?pageNo=0&pageSize=10&code=' + front.code).end(function (err, res) {
                         var b = res.body;
-                        expect(b.result.result.length).equal(0);
-                        done();
+                        if (!b.result) {
+                            done('FullPath is : ' + env + '/order/order/getOrderPages.json?pageNo=0&pageSize=10&code=' + front.code + '\r\n\r\n' + 'Actual output: ' + JSON.stringify(res.body) + '\r\n');
+                        } else {
+                            expect(b.result.result.length).equal(0);
+                            done();
+                        }
                     });
                 }).catch(err => {
                     done(err + '\r\n\r\n' + 'FullPath is : ' + env + url + params + '\r\n\r\n' + 'Actual output: ' + JSON.stringify(res.body) + '\r\n');
@@ -101,8 +105,12 @@ describe('Nileoo删除订单接口', function () {
                 }).then(body => {
                     tester.get('/order/order/getOrderPages.json?pageNo=0&pageSize=10&code=' + back.code).end(function (err, res) {
                         var b = res.body;
-                        expect(b.result.result.length).equal(0);
-                        done();
+                        if (!b.result) {
+                            done('FullPath is : ' + env + '/order/order/getOrderPages.json?pageNo=0&pageSize=10&code=' + back.code + '\r\n\r\n' + 'Actual output: ' + JSON.stringify(res.body) + '\r\n');
+                        } else {
+                            expect(b.result.result.length).equal(0);
+                            done();
+                        }
                     });
                 }).catch(err => {
                     done(err + '\r\n\r\n' + 'FullPath is : ' + env + url + params + '\r\n\r\n' + 'Actual output: ' + JSON.stringify(res.body) + '\r\n');
