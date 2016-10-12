@@ -17,7 +17,9 @@
     "deep-diff": "^0.3.4",
     "md5": "^2.2.1",
     "mocha": "^2.5.3",
+    "node-xlsx": "^0.7.2",
     "request": "^2.74.0",
+    "request-promise": "^4.1.1",
     "should": "^9.0.2",
     "supertest": "^1.2.0"
   }
