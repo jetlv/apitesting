@@ -36,7 +36,7 @@ describe('Nileoo打单导入Excel更新重量和运费', function () {
                     done();
                     return body;
                 }).catch(err => {
-                    done(err + '\r\n\r\n' + 'FullPath is : ' + env + url + params + '\r\n\r\n' + 'Actual output: ' + (res ? JSON.stringify(res.body) : '') + '\r\n');
+                    done(err + '\r\n\r\n' + 'FullPath is : ' + CONST.MHELPER_ADDRESS + url + params + '\r\n\r\n' + 'Actual output: ' + (res ? JSON.stringify(res.body) : '') + '\r\n');
                 });
             });
     });
@@ -109,7 +109,7 @@ describe('Nileoo打单导入Excel更新重量和运费', function () {
 
 
     it('验证更新后的价格和重量', function (done) {
-        var url = 'http://192.168.12.40:8080/order/order/getOrderPages.json?memberId=1&pageNo=0&pageSize=10&trackNumber=' + trackingNumber;
+        var url = 'http://192.168.12.40:8080/order/order/getOrderPages.json?memberId=1&pageNo=1&pageSize=10&trackNumber=' + trackingNumber;
         var options = {
             uri: url,
             method: 'GET',

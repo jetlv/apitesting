@@ -14,7 +14,7 @@ describe('Nileoo订单查询', function () {
 
     it('不设置查询条件', function (done) {
         var url = __path(__filename, 1);
-        var params = 'memberId=1&pageNo=0&pageSize=10';
+        var params = 'memberId=1&pageNo=1&pageSize=10';
         tester.get(url + params)
             .end(function (err, res) {
                 new Promise(function (resolve, reject) {
@@ -48,7 +48,7 @@ describe('Nileoo订单查询', function () {
     it('根据code查询', function (done) {
         var code = '131223-123L';
         var url = __path(__filename, 1);
-        var params = 'memberId=1&pageNo=0&pageSize=10&code=' + code;
+        var params = 'memberId=1&pageNo=1&pageSize=10&code=' + code;
         tester.get(url + params)
             .end(function (err, res) {
                 new Promise(function (resolve, reject) {
@@ -79,7 +79,7 @@ describe('Nileoo订单查询', function () {
     it('根据物流公司查询', function (done) {
         var delivery = 'Fedex';
         var url = __path(__filename, 1);
-        var params = 'memberId=1&pageNo=0&pageSize=10&delivery=' + delivery;
+        var params = 'memberId=1&pageNo=1&pageSize=10&delivery=' + delivery;
         tester.get(url + params)
             .end(function (err, res) {
                 new Promise(function (resolve, reject) {
@@ -110,7 +110,7 @@ describe('Nileoo订单查询', function () {
     it('根据hasPrint查询', function (done) {
         var hasPrint = 0;
         var url = __path(__filename, 1);
-        var params = 'memberId=1&pageNo=0&pageSize=10&hasPrint=' + hasPrint;
+        var params = 'memberId=1&pageNo=1&pageSize=10&hasPrint=' + hasPrint;
         tester.get(url + params)
             .end(function (err, res) {
                 new Promise(function (resolve, reject) {
@@ -141,7 +141,7 @@ describe('Nileoo订单查询', function () {
     it('根据orderNumber查询', function (done) {
         var orderNumber = 'ie_wd_160930162212_001';
         var url = __path(__filename, 1);
-        var params = 'memberId=1&pageNo=0&pageSize=10&orderNumber=' + orderNumber;
+        var params = 'memberId=1&pageNo=1&pageSize=10&orderNumber=' + orderNumber;
         tester.get(url + params)
             .end(function (err, res) {
                 new Promise(function (resolve, reject) {
@@ -172,7 +172,7 @@ describe('Nileoo订单查询', function () {
     it('根据memberId查询', function (done) {
         var memberId = 1;
         var url = __path(__filename, 1);
-        var params = 'pageNo=0&pageSize=10&memberId=' + memberId;
+        var params = 'pageNo=1&pageSize=10&memberId=' + memberId;
         tester.get(url + params)
             .end(function (err, res) {
                 new Promise(function (resolve, reject) {
@@ -202,7 +202,7 @@ describe('Nileoo订单查询', function () {
 
     it('综合查询', function (done) {
         var url = __path(__filename, 1);
-        var params = 'pageNo=0&pageSize=10&delivery=Fedex&hasPrint=1&createTimeGe=2016-01-01&createTimeLe=2016-12-30&orderNumber=ie_wd_160930162212_001&memberId=1';
+        var params = 'pageNo=1&pageSize=10&delivery=Fedex&hasPrint=1&createTimeGe=2016-01-01&createTimeLe=2016-12-30&orderNumber=ie_wd_160930162212_001&memberId=1';
         tester.get(url + params)
             .end(function (err, res) {
                 new Promise(function (resolve, reject) {
