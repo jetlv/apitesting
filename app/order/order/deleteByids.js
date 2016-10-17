@@ -76,10 +76,10 @@ describe('Nileoo删除订单接口', function () {
                     expect(body.msg).equal("success.");
                     return body;
                 }).then(body => {
-                    tester.get('/order/order/getOrderPages.json?pageNo=0&pageSize=10&code=' + front.code).end(function (err, res) {
+                    tester.get('/order/order/getOrderPages.json?memberId=1&pageNo=0&pageSize=10&code=' + front.code).end(function (err, res) {
                         var b = res.body;
                         if (!b.result) {
-                            done('FullPath is : ' + env + '/order/order/getOrderPages.json?pageNo=0&pageSize=10&code=' + front.code + '\r\n\r\n' + 'Actual output: ' + JSON.stringify(res.body) + '\r\n');
+                            done('FullPath is : ' + env + '/order/order/getOrderPages.json?memberId=1&pageNo=0&pageSize=10&code=' + front.code + '\r\n\r\n' + 'Actual output: ' + JSON.stringify(res.body) + '\r\n');
                         } else {
                             expect(b.result.result.length).equal(0);
                             done();
@@ -103,10 +103,10 @@ describe('Nileoo删除订单接口', function () {
                     expect(body.msg).equal("success.");
                     return body;
                 }).then(body => {
-                    tester.get('/order/order/getOrderPages.json?pageNo=0&pageSize=10&code=' + back.code).end(function (err, res) {
+                    tester.get('/order/order/getOrderPages.json?memberId=1&pageNo=0&pageSize=10&code=' + back.code).end(function (err, res) {
                         var b = res.body;
                         if (!b.result) {
-                            done('FullPath is : ' + env + '/order/order/getOrderPages.json?pageNo=0&pageSize=10&code=' + back.code + '\r\n\r\n' + 'Actual output: ' + JSON.stringify(res.body) + '\r\n');
+                            done('FullPath is : ' + env + '/order/order/getOrderPages.json?memberId=1&pageNo=0&pageSize=10&code=' + back.code + '\r\n\r\n' + 'Actual output: ' + JSON.stringify(res.body) + '\r\n');
                         } else {
                             expect(b.result.result.length).equal(0);
                             done();
