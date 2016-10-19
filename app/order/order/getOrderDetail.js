@@ -12,10 +12,35 @@ var tester = supertest.agent(env);
 
 
 describe('Nileoo查询订单详细', function () {
+    var order;
+    var mhelper = supertest.agent(CONST.MHELPER_ADDRESS);
+
+    it('构造一个订单', function (done) {
+        var url = '/api/nileoo/order/addrandom';
+        var params = '';
+        mhelper.get(url + params)
+            .end(function (err, res) {
+                new Promise(function (resolve, reject) {
+                    var body = res.body;
+                    resolve(body);
+                }).then(body => {
+                    expect(body.code).equal(1);
+                    return body;
+                }).then(body => {
+                    expect(body.order).not.null;
+                    order = body.order;
+                    done();
+                    return body;
+                }).catch(err => {
+                    done(err + '\r\n\r\n' + 'FullPath is : ' + CONST.MHELPER_ADDRESS + url + params + '\r\n\r\n' + 'Actual output: ' + (res ? JSON.stringify(res.body) : '') + '\r\n');
+                });
+            });
+    });
+
 
     it('基本验证', function (done) {
         var url = __path(__filename, 1);
-        var orderId = 8;
+        var orderId = order.id;
         var params = 'orderId=' + orderId;
         tester.get(url + params)
             .end(function (err, res) {
