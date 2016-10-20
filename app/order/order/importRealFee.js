@@ -63,10 +63,10 @@ describe('Nileoo打单导入Excel更新重量和运费', function () {
     });
 
     it('构造Excel并导入', function (done) {
-        var columns = ['Tracking Number', 'Shipper Reference', 'Weight', 'Price'];
+        var columns = ['Tracking Number', 'Shipper Reference', 'Weight', 'Price', 'delivery'];
         var sheet = { name: 'temp', data: [] };
         sheet.data.push(columns);
-        sheet.data.push([trackingNumber, order.orderNumber, '6.6', '7.7']);
+        sheet.data.push([trackingNumber, order.orderNumber, '6.6', '7.7', 'Fedex']);
         var buffer = ew.build([sheet]);
         var tempFile = 'temp.xls';
         fs.writeFileSync(tempFile, buffer);
