@@ -27,7 +27,7 @@ describe('Nileoo卖家登录', function () {
 
     it('正常登录', function (done) {
         var url = __path(__filename, 1);
-        var params = 'password=admin&username=admin&nyxSign=9C6918812567172F3A2FEECEA89CC355';
+        var params = 'password=nileoo&username=admin'; /**&nyxSign=9C6918812567172F3A2FEECEA89CC355';*/
         tester.post(url + params)
             .end(function (err, res) {
                 new Promise(function (resolve, reject) {

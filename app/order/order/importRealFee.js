@@ -66,7 +66,7 @@ describe('Nileoo打单导入Excel更新重量和运费', function () {
         var columns = ['Tracking Number', 'Shipper Reference', 'Weight', 'Price', 'delivery'];
         var sheet = { name: 'temp', data: [] };
         sheet.data.push(columns);
-        sheet.data.push([trackingNumber, order.orderNumber, '6.6', '7.7', 'Fedex']);
+        sheet.data.push([trackingNumber, order.orderNumber, '6.6', '7.7', 'FedexIP']);
         var buffer = ew.build([sheet]);
         var tempFile = 'temp.xls';
         fs.writeFileSync(tempFile, buffer);
@@ -89,7 +89,7 @@ describe('Nileoo打单导入Excel更新重量和运费', function () {
                 var fp = body.filePath;
                 return fp;
             }).then(fp => {
-                importFeeUrl = 'http://192.168.12.40:8080/order/order/importRealFee.json?url=http://192.168.11.67/upload/nileoo/logistics_excel/o/' + fp;
+                importFeeUrl = 'http://192.168.12.40:8080/order/order/importRealFee.json?url=' /**+ 'http://192.168.11.67/upload/nileoo/logistics_excel/o/'*/ + fp;
                 var importOptions = {
                     uri: importFeeUrl,
                     method: 'POST',
