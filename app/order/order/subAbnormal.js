@@ -30,7 +30,7 @@ describe('Nileoo前台提交异常及解除异常', function () {
                     return body;
                 }).then(body => {
                     expect(body.order).not.null;
-                    order = body.order;
+                    order = body.order.orderVo;
                     done();
                     return body;
                 }).catch(err => {
@@ -63,7 +63,7 @@ describe('Nileoo前台提交异常及解除异常', function () {
 
     it('验证是否保存成功了', function (done) {
         var url = __path(__filename, 1).replace('subAbnormal', 'getOrderDetail');
-        var params = 'orderId=' + order.id;
+        var params = 'orderId=' + order.id + '&memberId=1' ;
         tester.get(url + params)
             .end(function (err, res) {
                 new Promise(function (resolve, reject) {
@@ -113,7 +113,7 @@ describe('Nileoo前台提交异常及解除异常', function () {
 
     it('验证是否解除异常', function (done) {
         var url = __path(__filename, 1).replace('subAbnormal', 'getOrderDetail');
-        var params = 'orderId=' + order.id;
+        var params = 'orderId=' + order.id + '&memberId=1';
         tester.get(url + params)
             .end(function (err, res) {
                 new Promise(function (resolve, reject) {

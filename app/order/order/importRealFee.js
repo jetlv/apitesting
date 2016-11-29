@@ -32,7 +32,7 @@ describe('Nileoo打单导入Excel更新重量和运费', function () {
                     return body;
                 }).then(body => {
                     expect(body.order).not.null;
-                    order = body.order;
+                    order = body.order.orderVo;
                     done();
                     return body;
                 }).catch(err => {
@@ -120,8 +120,8 @@ describe('Nileoo打单导入Excel更新重量和运费', function () {
         rp(options)
             .then(body => {
                 expect(body.result.result.length).equal(1);
-                expect(body.result.result[0].realTotalWeight).equal(6.6);
-                expect(body.result.result[0].costDeliveryPrice).equal(7.7);
+                expect(body.result.result[0].orderVo.realTotalWeight).equal(6.6);
+                expect(body.result.result[0].orderVo.costDeliveryPrice).equal(7.7);
                 done();
             }).catch(error => {
                 done('Validation error ' + error + 'Fullpath : ' + url);

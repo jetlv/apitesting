@@ -31,7 +31,7 @@ describe('Nileoo删除订单接口', function () {
                     return body;
                 }).then(body => {
                     expect(body.order).not.null;
-                    front = body.order;
+                    front = body.order.orderVo;
                     done();
                     return body;
                 }).catch(err => {
@@ -54,7 +54,7 @@ describe('Nileoo删除订单接口', function () {
                     return body;
                 }).then(body => {
                     expect(body.order).not.null;
-                    back = body.order;
+                    back = body.order.orderVo;
                     done();
                     return body;
                 }).catch(err => {

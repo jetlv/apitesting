@@ -26,8 +26,8 @@ describe('Nileoo订单查询', function () {
                     expect(body.code).equal(1);
                     return body;
                 }).then(body => {
-                    expect(body.order).not.null;
-                    order = body.order;
+                    expect(body.order.orderVo).not.null;
+                    order = body.order.orderVo;
                     done();
                     return body;
                 }).catch(err => {
@@ -55,7 +55,7 @@ describe('Nileoo订单查询', function () {
                     return body;
                 }).then(body => {
                     if (body.result.result.length > 0) {
-                        var item = body.result.result[0];
+                        var item = body.result.result[0].orderVo;
                         expect(item.id).greaterThan(0);
                         expect(item.delivery).not.null;
                         expect(item.postCode).not.null;
@@ -89,7 +89,7 @@ describe('Nileoo订单查询', function () {
                     return body;
                 }).then(body => {
                     if (body.result.result.length > 0) {
-                        var item = body.result.result[0];
+                        var item = body.result.result[0].orderVo;
                         expect(item.code).equal(code);
                     }
                     done();
@@ -120,7 +120,7 @@ describe('Nileoo订单查询', function () {
                     return body;
                 }).then(body => {
                     if (body.result.result.length > 0) {
-                        var item = body.result.result[0];
+                        var item = body.result.result[0].orderVo;
                         expect(item.delivery).equal(delivery);
                     }
                     done();
@@ -151,7 +151,7 @@ describe('Nileoo订单查询', function () {
                     return body;
                 }).then(body => {
                     if (body.result.result.length > 0) {
-                        var item = body.result.result[0];
+                        var item = body.result.result[0].orderVo;
                         expect(item.hasPrint).equal(hasPrint);
                     }
                     done();
@@ -179,11 +179,11 @@ describe('Nileoo订单查询', function () {
                     return body;
                 }).then(body => {
                     expect(body.result.result.length).least(1);
-                    expect(body.result.result[0].orderNumber).equal(orderNumber);
+                    expect(body.result.result[0].orderVo.orderNumber).equal(orderNumber);
                     return body;
                 }).then(body => {
                     if (body.result.result.length > 0) {
-                        var item = body.result.result[0];
+                        var item = body.result.result[0].orderVo;
                         expect(item.orderNumber).equal(orderNumber);
                     }
                     done();
@@ -214,7 +214,7 @@ describe('Nileoo订单查询', function () {
                     return body;
                 }).then(body => {
                     if (body.result.result.length > 0) {
-                        var item = body.result.result[0];
+                        var item = body.result.result[0].orderVo;
                         expect(item.creatorMember).equal(memberId);
                     }
                     done();

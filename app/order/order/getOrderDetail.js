@@ -28,7 +28,7 @@ describe('Nileoo查询订单详细', function () {
                     return body;
                 }).then(body => {
                     expect(body.order).not.null;
-                    order = body.order;
+                    order = body.order.orderVo;
                     done();
                     return body;
                 }).catch(err => {
@@ -41,7 +41,7 @@ describe('Nileoo查询订单详细', function () {
     it('基本验证', function (done) {
         var url = __path(__filename, 1);
         var orderId = order.id;
-        var params = 'orderId=' + orderId;
+        var params = 'orderId=' + orderId + '&memberId=1';
         tester.get(url + params)
             .end(function (err, res) {
                 new Promise(function (resolve, reject) {

@@ -33,7 +33,7 @@ describe('Nileoo余额不足打单', function () {
                     return body;
                 }).then(body => {
                     expect(body.order).not.null;
-                    order = body.order;
+                    order = body.order.orderVo;
                     done();
                     return body;
                 }).catch(err => {
