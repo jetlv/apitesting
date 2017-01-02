@@ -9,28 +9,13 @@ var supertest = R.supertest;
 
 var env = CONST.NILEOO_ADDRESS_TESTENV;
 var tester = supertest.agent(env);
-var fs = require('fs');
 
-/// <reference path="../../../include.d.ts" />
-var conf = require('../../../configuration.js');
-var CONST = conf.CONST;
-var R = require('../../../req.js');
-var expect = R.expect;
-var __path = R.__path;
-var Promise = require('bluebird');
-var supertest = R.supertest;
+describe('买家反馈', function () {
 
-var env = CONST.NILEOO_ADDRESS_TESTENV;
-var tester = supertest.agent(env);
-
-describe('Nileoo卖家登录', function () {
-    before(function() {
-        this.skip();
-    });
-    it('正常登录', function (done) {
+    it('正常反馈', function (done) {
         var url = __path(__filename, 1);
-        var params = 'password=nileoo&username=admin'; /**&nyxSign=9C6918812567172F3A2FEECEA89CC355';*/
-        tester.post(url + params)
+        var params = 'buyerId=1&languageCode=en-uk&content=Nothing&deviceType=1&title=hehe';
+        tester.get(url + params)
             .end(function (err, res) {
                 new Promise(function (resolve, reject) {
                     var body = res.body;
@@ -40,11 +25,7 @@ describe('Nileoo卖家登录', function () {
                     return body;
                 }).then(body => {
                     expect(body.code).equal("0");
-                    expect(body.sellerInfo.status).equal(0);
-                    expect(body.sellerInfo.sellerVo.userName).equal("admin");
-                    expect(body.sellerInfo.sellerVo.status).equal(0);
-                    expect(body.sellerInfo.menuVos.length).least(1);
-                    expect(body.sellerInfo.menuVos[0].children.length).least(1);
+                    expect(body.result).is.true;
                     done();
                     return body;
                 }).catch(err => {

@@ -19,6 +19,9 @@ var mhelper = supertest.agent(CONST.MHELPER_ADDRESS);
 describe('Nileoo打单导入Excel更新重量和运费', function () {
     var order;
     var trackingNumber;
+    before(function() {
+        this.skip();
+    });
     it('构造一个订单', function (done) {
         var url = '/api/nileoo/order/addrandom';
         var params = '';

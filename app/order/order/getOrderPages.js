@@ -13,7 +13,9 @@ var tester = supertest.agent(env);
 describe('Nileoo订单查询', function () {
     var order;
     var mhelper = supertest.agent(CONST.MHELPER_ADDRESS);
-
+    before(function() {
+        this.skip();
+    });
     it('构造一个订单', function (done) {
         var url = '/api/nileoo/order/addrandom';
         var params = '';

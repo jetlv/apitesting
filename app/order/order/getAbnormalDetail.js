@@ -12,7 +12,9 @@ var tester = supertest.agent(env);
 
 
 describe('Nileoo查询异常', function () {
-
+    before(function() {
+        this.skip();
+    });
     it('查询指定异常', function (done) {
         done();
     //     var url = __path(__filename, 1);

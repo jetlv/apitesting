@@ -6,6 +6,7 @@ var CONST = conf.CONST;
 
 /**
  * get current api path
+ * @param type - 1 代表后缀为json
  */
 module.exports.getPath = function (fname, type) {
     var sep = CONST['SEP_' + os.platform()];

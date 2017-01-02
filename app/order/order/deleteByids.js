@@ -15,8 +15,14 @@ var mhelper = supertest.agent(CONST.MHELPER_ADDRESS);
 /** 在进行本接口测试的同时，也测试到了Import的接口。MHelper的业务逻辑验证了import，如果失败，本接口也会报错 */
 describe('Nileoo删除订单接口', function () {
 
+    before(function() {
+        this.skip();
+    });
+
     var front;
     var back;
+
+
 
     it('为前台删除造订单', function (done) {
         var url = '/api/nileoo/order/addrandom';
@@ -93,7 +99,7 @@ describe('Nileoo删除订单接口', function () {
 
     it('后台删除订单', function (done) {
         var url = __path(__filename, 1);
-        var params = 'ids=' + back.id + '&back=1';
+        var params = 'ids=' + back.id + '&back=1&memberId=' + back.creatorMember;
         tester.get(url + params)
             .end(function (err, res) {
                 new Promise(function (resolve, reject) {

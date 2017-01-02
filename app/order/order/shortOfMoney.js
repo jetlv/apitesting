@@ -17,6 +17,9 @@ var mhelper = supertest.agent(CONST.MHELPER_ADDRESS);
 /** 本case连打单一起测试 */
 
 describe('Nileoo余额不足打单', function () {
+    before(function() {
+        this.skip();
+    });
     var order;
     var trackingNumber;
     it('构造一个订单', function (done) {

@@ -15,6 +15,9 @@ var mhelper = supertest.agent(CONST.MHELPER_ADDRESS);
 
 
 describe('Nileoo前台提交异常及解除异常', function () {
+    before(function() {
+        this.skip();
+    });
     var remark = util.randomStr(8);
     var order;
     it('造一个订单', function (done) {

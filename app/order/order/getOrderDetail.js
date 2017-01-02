@@ -14,7 +14,9 @@ var tester = supertest.agent(env);
 describe('Nileoo查询订单详细', function () {
     var order;
     var mhelper = supertest.agent(CONST.MHELPER_ADDRESS);
-
+    before(function() {
+        this.skip();
+    });
     it('构造一个订单', function (done) {
         var url = '/api/nileoo/order/addrandom';
         var params = '';
@@ -52,7 +54,7 @@ describe('Nileoo查询订单详细', function () {
                     return body;
                 }).then(body => {
                     expect(body.code).equal("0");
-                    var result = body.result;
+                    var result = body.result.orderVo;
                     expect(result.id).equal(orderId);
                     expect(result.code).not.null;
                     expect(result.phone).not.null;
